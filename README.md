@@ -41,7 +41,12 @@ Tools built with [Claude](https://claude.ai/) naturally.
 
 For compatibility with Minix the [ACK compiler](https://github.com/davidgiven/ack/compare/default...maarten-boot:ack:rosco-minix68k) is used lightly patched.
 
-A extensive test set is executed at build time to verify a accurate implementation (additional test are very welcome).
+A extensive test set,
+derived by Claude from the relevant documentation and the original Z80 and Agon implementations,
+is executed at build time
+to verify a accurate implementation
+
+Additional test are allways very welcome.
 
 Standalone:
 
