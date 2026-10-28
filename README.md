@@ -19,6 +19,8 @@ and a full [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_for
 using the [Agon](https://github.com/breakintoprogram/agon-bbc-basic)
 implementation and the manuals at [RiscOs](https://www.riscos.com/support/developers/bbcbasic/bbcref.html).
 
+R.T Russel provided valuable asistance in the compatibility testing.
+
 For thise interested in the full porting process, the mboot directory contains the full conversation, planning and reviews.
 
 ## Workbench
