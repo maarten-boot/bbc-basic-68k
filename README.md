@@ -1,6 +1,6 @@
 # bbc-basic-68k
 
-A bbc basic for the 68k CPU targeted currently at the [rosco-m68k]([https://github.com/rosco-m68k/rosco_m68k) <br>and a planned [Minix2](https://github.com/maarten-boot/minix-st-2.0.4/tree/rosco-m68k) on top of that platform (work in progress).
+A bbc basic for the 68k CPU targeted currently at the [rosco-m68k](https://github.com/rosco-m68k/rosco_m68k) <br>and a planned [Minix2](https://github.com/maarten-boot/minix-st-2.0.4/tree/rosco-m68k) on top of that platform (work in progress).
 
 ## Origins
 
