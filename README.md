@@ -4,20 +4,19 @@ A bbc basic for the 68k CPU targeted currently at the [rosco-m68k](https://githu
 
 ## Origins
 
-Based on the original Z80 implementation at: [BBCZ80](https://
-github.com/rtrussell/BBCZ80)
+Based on the original Z80 implementation at: [BBCZ80](https://github.com/rtrussell/BBCZ80)
 
 ## License
 
-We use the same [Zlib](https://en.wikipedia.org/wiki/Zlib_License) licene as the BBCZ80 it is derived from. 
+We use the same [Zlib](https://en.wikipedia.org/wiki/Zlib_License) licene as the BBCZ80 it is derived from.
 
 [Licence](license.txt)
 
 ## Implementation
 
-The original Z80 code was translated with the help of [Claude](https://claude.ai/) 
-and a full [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) syntax also derived from the existing code. Later corrections were carried out by [Claude](https://claude.ai/) 
-using the [Agon](https://github.com/breakintoprogram/agon-bbc-basic) 
+The original Z80 code was translated with the help of [Claude](https://claude.ai/)
+and a full [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) syntax also derived from the existing code. Later corrections were carried out by [Claude](https://claude.ai/)
+using the [Agon](https://github.com/breakintoprogram/agon-bbc-basic)
 implementation and the manuals at [RiscOs](https://www.riscos.com/support/developers/bbcbasic/bbcref.html).
 
 For thise interested in the full porting process, the mboot directory contains the full conversation, planning and reviews.
@@ -28,7 +27,10 @@ For running several Claude conversations at the same time,
 on different git repo's i built a tool.
 It keeps the development platform fully separated from the user.
 
-- [session-workbench](https://github.com/maarten-boot/multi-session-ssh-dev).  
+- [session-workbench](https://github.com/maarten-boot/multi-session-ssh-dev).
+
+And a tool to easily browse syntax data (ebnf, lark, yacc, lemon).
+
 - [syntax-viewer](https://github.com/maarten-boot/syntax-viewer)
 
 Tools built with [Claude](https://claude.ai/) naturally.
@@ -56,5 +58,5 @@ We gracefully acknowledge the original implementors of all components used.
 - [Agon-bbc-basic](https://github.com/breakintoprogram/agon-bbc-basic)
 - [Minix2-st](https://github.com/EmmanuelKasper/minix-st-2.0.4)
 - [ACK](https://github.com/davidgiven/ack)
-- [RiscOs](https://www.riscos.com/support/developers/bbcbasic/bbcref.html) 
+- [RiscOs](https://www.riscos.com/support/developers/bbcbasic/bbcref.html)
 - [Claude](https://claude.ai/)
