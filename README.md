@@ -21,7 +21,7 @@ implementation and the manuals at [RiscOs](https://www.riscos.com/support/develo
 
 R.T Russel provided valuable asistance in the compatibility testing.
 
-For thise interested in the full porting process, the mboot directory contains the full conversation, planning and reviews.
+For those interested in the full porting process, the mboot directory contains the full conversation, planning and reviews.
 
 ## Workbench
 
