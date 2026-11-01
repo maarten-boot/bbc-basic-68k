@@ -22,7 +22,7 @@ Everything is inlined (-sSINGLE_FILE), so the page works offline, also
 opened as a file.
 
 --test builds a Node version too (build/web/node) and runs web/test.js:
-boot, the asm demo from the menu, and the upstream test programs (tests/)
+boot, the asm demo from the menu (CHAIN "menu"), and the upstream test programs (tests/)
 uploaded through loader.js and run, compared with their bascheck
 references (test/bas/u_*.ref), a listing read in with *EXEC, and two files
 uploaded together and CHAINed.  Then, if chromium and the Python
@@ -218,13 +218,13 @@ def main():
             json.dump(keywords(), f)
         if subprocess.run(['node', os.path.join(WEB, 'test.js'), node,
                            os.path.join(WORK, 'node', 'tokens.json'),
-                           os.path.join(TOP, 'tests'),
+                           os.path.join(TOP, 'z80', 'tests'),
                            os.path.join(SRC, 'test', 'bas'),
                            'minix' if a.minix else 'bare']).returncode:
             return 1
         if shutil.which('chromium') and importlib.util.find_spec('websockets'):
             return subprocess.run([sys.executable, os.path.join(WEB, 'browsertest.py'),
-                                   out, os.path.join(TOP, 'tests')]).returncode
+                                   out, os.path.join(TOP, 'z80', 'tests')]).returncode
         print('mkweb: no chromium or websockets module: page not tried in a browser')
     return 0
 

@@ -8,13 +8,15 @@
 #			there).  The RAM root image has no room for it.
 #	make clean
 #
-# MINIX is the minix-st-2.0.4 checkout, branch rosco-m68k, with the ACK
-# built (src/rosco/ack: make host lib).  See CONVENTIONS.md.
+# MINIX is the minix-st-2.0.4 checkout, branch rosco-m68k (its headers and
+# C library sources, its tools).  The ACK is a release of
+# github.com/maarten-boot/ack, fetched by tools/getack.sh into ../build/ack
+# with the Minix C library compiled by it.  See CONVENTIONS.md.
 
 MINIX	= ../../minix-st-2.0.4
-ACK	= $(MINIX)/src/rosco/ack
-AS	= $(ACK)/acc
-LD	= $(ACK)/acc-minix
+ACKV	= ../build/ack/VERSION
+AS	= tools/acc
+LD	= tools/acc-minix
 
 TESTS	= test/hello test/utiltest test/mathtest test/osmon
 OSOBJ	= minix.o osl.o hook.o
@@ -30,13 +32,17 @@ all:	$(TESTS) bbcbasic
 bbcbasic:	$(BASOBJ)
 	$(LD) -S 64k -o $@ $(BASOBJ)
 
-main.s:	main.s.in tools/mkmain.py ../src/MAIN.Z80
+main.s:	main.s.in tools/mkmain.py ../z80/src/MAIN.Z80
 	python3 tools/mkmain.py
 
-%.o:	%.s bbc.h
+# the ACK (tools/getack.sh): fetched once, before anything is compiled
+$(ACKV):	tools/getack.sh
+	MINIX=$(MINIX) tools/getack.sh
+
+%.o:	%.s bbc.h | $(ACKV)
 	$(AS) -c -o $@ $<
 
-osl.o:	osl.c
+osl.o:	osl.c | $(ACKV)
 	$(LD) -c -o $@ osl.c
 
 test/osmon:	test/osmon.o data.o $(OSOBJ)
@@ -73,7 +79,7 @@ install:	bbcbasic
 	mkdir -p $(ROSCO)/rootfs/local
 	cp bbcbasic $(ROSCO)/rootfs/local/bbcbasic
 	grep -q '^f /usr/bin/bbcbasic' $(ROSCO)/rootfs/sdproto || \
-		printf '\n# BBC BASIC (src68k in BBCZ80, make install)\n%s\n' \
+		printf '\n# BBC BASIC (bbc-basic-68k, make install)\n%s\n' \
 		'$(PROTOLINE)' >> $(ROSCO)/rootfs/sdproto
 
 # the 68000 inline assembler against the ACK assembler

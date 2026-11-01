@@ -7,17 +7,18 @@
 #	src68k/tools/ci-windows.sh ["VERSION LINE"]
 #
 # One folder W holds the checkouts, as on the development host:
-#	W/BBCZ80		this repository
-#	W/minix-st-2.0.4	maarten-boot/minix-st-2.0.4: the ACK build
-#				(src/rosco/ack) and the C library it compiles
+#	W/bbc-basic-68k		this repository
+#	W/minix-st-2.0.4	maarten-boot/minix-st-2.0.4: the headers and
+#				sources of the C library, mkfat.py, mksd.py
+# The ACK is a release of maarten-boot/ack (tools/getack.sh, into
+# W/bbc-basic-68k/build/ack), with the Minix C library compiled by it.
 #	W/r68k			maarten-boot/r68k: the emulator and its firmware
 #	W/RunCPM		cloned here if missing: the Z80 BBC BASIC under
 #				RunCPM tokenises the demo programs
-# Needs gcc, g++, make, flex, bison, ninja, lua5.4 with lua-posix, python3,
-# git, zip, x86_64-w64-mingw32-g++-posix, dosfstools (fatcheck), and
+# Needs gcc, g++, make, python3, curl, git, zip, x86_64-w64-mingw32-g++-posix, dosfstools (fatcheck), and
 # docker for the ROM (the
 # roscopeco/rosco_m68k image has m68k-elf-gcc and vasm).
-# Result, in W/BBCZ80/build/dist: bbc68k-windows/ (bbc68k.exe, README.txt)
+# Result, in W/bbc-basic-68k/build/dist: bbc68k-windows/ (bbc68k.exe, README.txt)
 # and its .zip; bbc68k-rosco/ (ROSCODE1.BIN = BBCBASIC.BIN, README.txt);
 # bbc68k-linux/ (bbc68k, static, and README.txt) and its
 # .tar.gz, which keeps the executable bit that an artifact's zip loses.
@@ -30,9 +31,7 @@ VERSION=${1:-"Version $(date -u '+%Y-%m-%d %H:%M') (commit $(git -C "$TOP" rev-p
 RUNCPM_REV=12fc57a1784b8fc97dae30eb5dffedccf098bbd5	# 2026-10-23
 
 echo "== ACK for minix68k and the Minix C library"
-ack=$W/minix-st-2.0.4/src/rosco/ack
-[ -x "$ack/ack/.obj/staging/bin/ack" ] || (cd "$ack" && ./build-ack.sh)
-make -C "$ack" lib
+MINIX=$W/minix-st-2.0.4 "$SRC/tools/getack.sh"
 
 echo "== the rosco_m68k ROM"
 if [ ! -f "$W/r68k/firmware/rosco_m68k.rom" ]; then

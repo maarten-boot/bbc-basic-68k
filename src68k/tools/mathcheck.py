@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compare the 68k FPP (src68k/math.s, test/mathtest under Minix in r68k)
-bit for bit with the Z80 original (bin/cpm/BBCBASIC.COM under RunCPM).
+bit for bit with the Z80 original (z80/bin/cpm/BBCBASIC.COM under RunCPM).
 
 	mathcheck.py [-n N] [-s SEED] [-o OPS] [-k]
 

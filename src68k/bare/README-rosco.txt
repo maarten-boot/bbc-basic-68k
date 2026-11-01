@@ -15,6 +15,9 @@ Two copies of the same program:
                     the card; choose BBCBASIC.BIN there)
 
 Both are loaded at &40000, the firmware's load address.
+Tested on a rosco_m68k Classic (68010, 10 MHz, 5 MB, its ROM's console
+at 38400), and in MAME with firmware 2.42 and 2.50, both directly and
+from sdfat_menu.  BASIC keeps the serial port as the firmware set it.
 
 Memory
 ------
@@ -44,5 +47,5 @@ A bus error or an address error (in machine code, or ? ! $ where there
 is no memory) is BASIC's error 8, "Address out of range" or "Odd
 address", which ON ERROR can trap.
 
-The inline assembler is a 68000 one: see ASSEMBLER.md in the repository,
-https://github.com/maarten-boot/BBCZ80 (src68k).
+The inline assembler is a 68000 one: see src68k/ASSEMBLER.md in the
+repository, https://github.com/maarten-boot/bbc-basic-68k

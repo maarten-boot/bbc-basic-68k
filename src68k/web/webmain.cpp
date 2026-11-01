@@ -1,5 +1,5 @@
 //
-// r68k's main() for a web page (BBCZ80 src68k/web): the machine of
+// r68k's main() for a web page (bbc-basic-68k src68k/web): the machine of
 // "R68K_RAM=2M r68k -d ROSCODE1.BIN" (r68k's main.cpp, which is compiled
 // with its main renamed, for its trap and trace handlers), run by the
 // browser in frames (emscripten_set_main_loop) instead of an endless loop.

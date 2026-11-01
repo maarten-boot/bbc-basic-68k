@@ -1,2 +1,2 @@
-#file ../../../tests/BYREFTST.BBC
+#file ../../../z80/tests/BYREFTST.BBC
 CHAIN "BYREFTST"

@@ -8,9 +8,9 @@ Based on the original Z80 implementation at: [BBCZ80](https://github.com/rtrusse
 
 ## License
 
-We use the same [Zlib](https://en.wikipedia.org/wiki/Zlib_License) licene as the BBCZ80 it is derived from.
+We use the same [Zlib](https://en.wikipedia.org/wiki/Zlib_License) licence as the BBCZ80 it is derived from.
 
-[Licence](license.txt)
+[Licence](licence.txt)
 
 ## Implementation
 
@@ -19,14 +19,14 @@ and a full [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_for
 using the [Agon](https://github.com/breakintoprogram/agon-bbc-basic)
 implementation and the manuals at [RiscOs](https://www.riscos.com/support/developers/bbcbasic/bbcref.html).
 
-R.T Russel provided valuable asistance in the compatibility testing.
+R.T. Russell provided valuable assistance in the compatibility testing.
 
 For those interested in the full porting process, the mboot directory contains the full conversation, planning and reviews.
 
 ## Workbench
 
 For running several Claude conversations at the same time,
-on different git repo's i built a tool.
+on different git repos I built a tool.
 It keeps the development platform fully separated from the user.
 
 - [session-workbench](https://github.com/maarten-boot/multi-session-ssh-dev).
@@ -39,27 +39,26 @@ Tools built with [Claude](https://claude.ai/) naturally.
 
 ## Builds
 
-For compatibility with Minix the [ACK compiler](https://github.com/davidgiven/ack/compare/default...maarten-boot:ack:rosco-minix68k) is used lightly patched.
+For compatibility with Minix the [ACK compiler](https://github.com/davidgiven/ack) is used, lightly patched: the builds fetch a [release of maarten-boot/ack](https://github.com/maarten-boot/ack/releases) (`src68k/tools/getack.sh`).
 
-A extensive test set,
+An extensive test set,
 derived by Claude from the relevant documentation and the original Z80 and Agon implementations,
 is executed at build time
-to verify a accurate implementation
+to verify an accurate implementation
 
-Additional test are allways very welcome.
+Additional tests are always very welcome.
 
 Standalone:
 
 - rosco-m68k using the r68k quick emulator
 - a standalone bin file for the rosco sd card
-- a full rosco sd image file
 - a linux build with the r68k emulator
 - a windows build with the r68k emulator
 
 
 ## Acknowledgements
 
-We gracefully acknowledge the original implementors of all components used.
+We gratefully acknowledge the original implementors of all components used.
 
 - [BBCZ80](https://github.com/rtrussell/BBCZ80)
 - [Agon-bbc-basic](https://github.com/breakintoprogram/agon-bbc-basic)

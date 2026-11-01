@@ -1,2 +1,2 @@
-#file ../../../tests/SLICETST.BBC
+#file ../../../z80/tests/SLICETST.BBC
 CHAIN "SLICETST"

@@ -22,7 +22,7 @@ run goes on. Two extra lines may appear, which are not typed:
 The expected output, with the prompt and echoed lines left out, is
 
 * `NAME.ref`: the output of R.T. Russell's BBC BASIC (Z80) version 5.4
-  (`bin/cpm/BBCBASIC.COM`) under RunCPM, or
+  (`z80/bin/cpm/BBCBASIC.COM`) under RunCPM, or
 * `NAME.exp`, written by hand where the Z80 version cannot give it:
   `CALL` and `USR` (68000 machine code), `POS` (always 0 under CP/M),
   `CLS` (nothing under CP/M), `QUIT` (ends BASIC: no prompt to wait for).

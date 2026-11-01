@@ -14,6 +14,7 @@ For Windows also the console keys: host/keytest.cpp (built here with
 MinGW) puts key events, cursor keys too, into bbc68k.exe's console.
 Then "bbc68k NAME" for each: the program CHAINed at the start, with a
 folder in NAME that folder as BASIC's, and File not found for none.
+Last "bbc68k < test.txt" with LF, CR LF and CR line ends.
 """
 
 import os
@@ -27,7 +28,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TOP = os.path.dirname(os.path.dirname(HERE))
 
 SCRIPT = [
-    '', 'NEW',
+    'NEW',
     '10 PRINT "saved on the host"', 'SAVE "PROG"', 'NEW', 'CHAIN "prog"',
     'SAVE "LongFileName.bbc"',
     'F%=OPENOUT "DATA.TXT":FOR I%=1 TO 3000:PRINT#F%,"line "+STR$I%:NEXT:CLOSE#F%',
@@ -139,7 +140,7 @@ def keys_windows():
 
 
 def autorun(kind):
-    """bbc68k NAME: CHAIN it at the start (no demo menu); with a folder in
+    """bbc68k NAME: CHAIN it at the start; with a folder in
     the name, that folder is BASIC's"""
     exe = os.path.join(TOP, 'build', 'host', kind, 'bbc68k.exe' if kind == 'windows' else 'bbc68k')
     pre = ['wine'] if kind == 'windows' else []
@@ -150,7 +151,7 @@ def autorun(kind):
         f.write(b'in sub\n')
     prog = ['NEW', '10 F%=OPENIN "mark.txt"', '20 PRINT "started by name, mark: ";F%<>0',
             'SAVE "hi"', '*BYE']
-    subprocess.run(pre + [exe], input=('\r' + '\r'.join(prog) + '\r').encode(), cwd=sub,
+    subprocess.run(pre + [exe], input=('\r'.join(prog) + '\r').encode(), cwd=sub,
                    capture_output=True, timeout=120)
     def go(arg, cwd):
         return subprocess.run(pre + [exe, arg], input=b'*BYE\r', cwd=cwd, capture_output=True,
@@ -169,10 +170,29 @@ def autorun(kind):
     return failed
 
 
+def scripts(kind):
+    """'bbc68k < test.txt' (README): a text file with LF, CR LF or CR line ends."""
+    exe = os.path.join(TOP, 'build', 'host', kind, 'bbc68k.exe' if kind == 'windows' else 'bbc68k')
+    pre = ['wine'] if kind == 'windows' else []
+    failed = 0
+    lines = ['10 FOR I%=1 TO 3:PRINT I%*I%;:NEXT', 'RUN', 'PRINT 6*7']
+    for name, end in (('LF', '\n'), ('CR LF', '\r\n'), ('CR', '\r')):
+        d = tempfile.mkdtemp(dir=os.path.join(TOP, 'build', 'host'))
+        out = subprocess.run(pre + [exe], input=(end.join(lines) + end).encode(), cwd=d,
+                             capture_output=True, timeout=120).stdout.decode('latin-1')
+        shutil.rmtree(d)
+        ok = re.search(r'1 +4 +9', out) is not None and re.search(r'\n +42\r', out) is not None
+        print('%s  %s: a script with %s line ends' % ('ok  ' if ok else 'FAIL', kind, name))
+        if not ok:
+            print(out[-500:])
+        failed += not ok
+    return failed
+
 def main():
     kinds = sys.argv[1:] or ['linux', 'windows']
     failed = sum(run(k) for k in kinds)
     failed += sum(autorun(k) for k in kinds)
+    failed += sum(scripts(k) for k in kinds)
     if 'windows' in kinds:
         failed += keys_windows()
     print('all ok' if not failed else '%d failed' % failed)

@@ -23,7 +23,7 @@
 +#endif
 +
 +#ifdef R68K_PAGE_IO
-+// In a web page (src68k/web in BBCZ80, with webmain.cpp in place of
++// In a web page (src68k/web in bbc-basic-68k, with webmain.cpp in place of
 +// main()), or a hosted build (src68k/host, hostmain.cpp): channel A is the
 +// page's terminal, or the program's console.
 +// * Keys come in through r68k_key() (r68k_pending() of them are waiting,

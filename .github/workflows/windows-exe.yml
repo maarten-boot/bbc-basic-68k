@@ -1,7 +1,7 @@
 # The Windows and Linux programs, bbc68k.exe and bbc68k (bare BBC BASIC in an
 # emulated rosco_m68k), and bare BBC BASIC for a real rosco_m68k
 # (ROSCODE1.BIN), built and tested by src68k/tools/ci-windows.sh, as three
-# artifacts.  Runs on every push to master (a merged pull request), and by
+# artifacts.  Runs on every push to main (a merged pull request), and by
 # hand: Actions > Windows and Linux programs > Run workflow.  The actions
 # are pinned to commit hashes (their versions in the comments), all
 # running on Node 24.
@@ -9,7 +9,7 @@ name: Windows and Linux programs
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
-          path: BBCZ80
+          path: bbc-basic-68k
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           repository: maarten-boot/minix-st-2.0.4
@@ -36,31 +36,25 @@ jobs:
         timeout-minutes: 40
         run: |
           sudo apt-get -o Acquire::Retries=5 update
-          sudo apt-get -o Acquire::Retries=5 install -y flex bison ninja-build lua5.4 lua-posix zip dosfstools \
+          sudo apt-get -o Acquire::Retries=5 install -y zip dosfstools \
             g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix
 
-      - name: ACK cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
-        with:
-          path: minix-st-2.0.4/src/rosco/ack/ack
-          key: ack-${{ hashFiles('minix-st-2.0.4/src/rosco/ack/build-ack.sh', 'minix-st-2.0.4/src/rosco/ack/ack-minix68k.patch') }}
-
       - name: Build and test
-        run: BBCZ80/src68k/tools/ci-windows.sh "Version $(date -u '+%Y-%m-%d %H:%M') (commit ${GITHUB_SHA::7}, GitHub Actions run ${{ github.run_number }})"
+        run: bbc-basic-68k/src68k/tools/ci-windows.sh "Version $(date -u '+%Y-%m-%d %H:%M') (commit ${GITHUB_SHA::7}, GitHub Actions run ${{ github.run_number }})"
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: bbc68k-windows
-          path: BBCZ80/build/dist/bbc68k-windows/
+          path: bbc-basic-68k/build/dist/bbc68k-windows/
 
       # for a real rosco_m68k: ROSCODE1.BIN, BBCBASIC.BIN (for sdfat_menu)
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: bbc68k-rosco
-          path: BBCZ80/build/dist/bbc68k-rosco/
+          path: bbc-basic-68k/build/dist/bbc68k-rosco/
 
       # a tar.gz inside the artifact: the artifact's zip loses the executable bit
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: bbc68k-linux
-          path: BBCZ80/build/dist/bbc68k-linux.tar.gz
+          path: bbc-basic-68k/build/dist/bbc68k-linux.tar.gz

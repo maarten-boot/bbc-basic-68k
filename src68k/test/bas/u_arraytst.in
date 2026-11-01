@@ -1,4 +1,4 @@
-#file ../../../tests/ARRAYTST.BBC
+#file ../../../z80/tests/ARRAYTST.BBC
 LOAD "ARRAYTST"
 160 IF ^OneD$(99) - ^OneD$(0) <> 99*DESC% STOP
 1360 IF ^MulD$(3,4) - ^MulD$(0,0) <> 19*DESC% STOP

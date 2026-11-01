@@ -29,7 +29,7 @@ SRC = os.path.dirname(HERE)
 TOP = os.path.dirname(SRC)
 MINIX = os.environ.get('MINIX', os.path.join(os.path.dirname(TOP),
                                              'minix-st-2.0.4'))
-ACC = os.path.join(MINIX, 'src', 'rosco', 'ack', 'acc')
+ACC = os.path.join(HERE, 'acc')			# the ACK (tools/getack.sh)
 WORK = os.path.join(TOP, 'build', 'asm')
 
 INSNS = [
@@ -159,8 +159,8 @@ def main():
     with open(prog, 'w') as f:
         f.write(basic_prog(items))
     if HOST:
-        # a Return for the demo menu, NEW, the lines (*BYE is the last)
-        inp = '\rNEW\r' + open(prog).read().replace('\n', '\r')
+        # NEW, the lines (*BYE is the last)
+        inp = 'NEW\r' + open(prog).read().replace('\n', '\r')
         out = subprocess.run(
             [os.path.join(TOP, 'build', 'host', 'linux', 'bbc68k')],
             input=inp.encode('latin-1'), cwd=WORK, capture_output=True,

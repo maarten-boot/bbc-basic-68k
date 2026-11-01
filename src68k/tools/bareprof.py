@@ -33,8 +33,7 @@ SRC = os.path.dirname(HERE)
 TOP = os.path.dirname(SRC)
 MINIX = os.path.abspath(os.environ.get('MINIX', os.path.join(os.path.dirname(TOP),
                                                              'minix-st-2.0.4')))
-ACK = os.path.join(MINIX, 'src', 'rosco', 'ack')
-STAGE = os.path.join(ACK, 'ack', '.obj', 'staging')
+STAGE = os.path.join(TOP, 'build', 'ack', 'dist')	# the ACK (tools/getack.sh)
 PROF = os.path.join(TOP, 'build', 'prof')
 WORK = os.path.join(PROF, 'bare')
 EMU = os.path.join(TOP, 'build', 'r68kprof', 'r68k')
@@ -80,7 +79,7 @@ def layout():
     objs = [('start', os.path.join(WORK, 'start.o'))]
     objs += [('interp', os.path.join(SRC, o)) for o in OBJS]
     objs += [('C', os.path.join(WORK, o)) for o in ('osl.o', 'bare.o', 'fat.o', 'seeds.o')]
-    objs.append(('lib', os.path.join(ACK, 'lib', 'emrts.o')))	# and the libraries
+    objs.append(('lib', os.path.join(TOP, 'build', 'ack', 'minixlib', 'emrts.o')))	# and the libraries
     parts = []
     for group, path in objs:
         for v, n in anm(path):
@@ -97,7 +96,7 @@ def card():
             os.remove(f)
     tools = os.path.join(MINIX, 'src', 'rosco', 'tools')
     subprocess.run([sys.executable, os.path.join(tools, 'mkfat.py'), '-s', '65536',
-                    '-o', '2048', fat, os.path.join(TOP, 'tests', 'FORTEST.BBC')],
+                    '-o', '2048', fat, os.path.join(TOP, 'z80', 'tests', 'FORTEST.BBC')],
                    check=True, stdout=subprocess.DEVNULL)
     subprocess.run([sys.executable, os.path.join(tools, 'mksd.py'),
                     os.path.join(WORK, 'rosco_sd.bin'), '06:' + fat],

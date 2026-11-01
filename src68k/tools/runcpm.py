@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the original Z80 BBC BASIC (bin/cpm/BBCBASIC.COM) under RunCPM as the
+"""Run the original Z80 BBC BASIC (z80/bin/cpm/BBCBASIC.COM) under RunCPM as the
 reference for the 68k port: type BASIC lines at the '>' prompt and print what
 comes back.
 
@@ -75,7 +75,7 @@ def main():
 
     work = os.path.join(TOP, 'build', 'cpm')
     os.makedirs(os.path.join(work, 'A', '0'), exist_ok=True)
-    shutil.copy(os.path.join(TOP, 'bin', 'cpm', 'BBCBASIC.COM'),
+    shutil.copy(os.path.join(TOP, 'z80', 'bin', 'cpm', 'BBCBASIC.COM'),
                 os.path.join(work, 'A', '0', 'BBCBASIC.COM'))
     t = Term([os.path.abspath(a.r)], work)
     try:

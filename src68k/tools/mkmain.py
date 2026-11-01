@@ -3,7 +3,7 @@
 (tools/z80data.py).  Run from src68k: python3 tools/mkmain.py"""
 import os, subprocess, sys
 here = os.path.dirname(os.path.abspath(__file__))
-src = os.path.join(here, '..', '..', 'src', 'MAIN.Z80')
+src = os.path.join(here, '..', '..', 'z80', 'src', 'MAIN.Z80')
 def conv(a, b):
     return subprocess.run([sys.executable, os.path.join(here, 'z80data.py'),
                            src, str(a), str(b)], capture_output=True,

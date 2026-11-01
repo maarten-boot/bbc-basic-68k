@@ -1,2 +1,2 @@
-#file ../../../tests/FORTEST.BBC
+#file ../../../z80/tests/FORTEST.BBC
 CHAIN "FORTEST"

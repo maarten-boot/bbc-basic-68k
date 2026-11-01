@@ -1,4 +1,4 @@
-#file ../../../tests/ERRORTST.BBC
+#file ../../../z80/tests/ERRORTST.BBC
 F%=OPENOUT("ARRAYTST.BBC"):CLOSE#F%
 LOAD "ERRORTST"
 1020

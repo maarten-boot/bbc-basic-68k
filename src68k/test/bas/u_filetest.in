@@ -1,2 +1,2 @@
-#file ../../../tests/FILETEST.BBC
+#file ../../../z80/tests/FILETEST.BBC
 CHAIN "FILETEST"

@@ -87,7 +87,7 @@ def make_card(kind, d):
             os.remove(f)
     if kind == 'FAT16':
         subprocess.run([sys.executable, os.path.join(TOOLS, 'mkfat.py'), '-s', '65536',
-                        '-o', str(PART), fat, os.path.join(TOP, 'tests', 'FORTEST.BBC')],
+                        '-o', str(PART), fat, os.path.join(TOP, 'z80', 'tests', 'FORTEST.BBC')],
                        check=True, stdout=subprocess.DEVNULL)
         ptype = '06'
     elif kind == 'FAT16b':
