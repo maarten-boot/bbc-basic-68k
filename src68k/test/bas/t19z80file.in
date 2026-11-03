@@ -1,0 +1,44 @@
+#file ../../../z80/tests/ALLTESTS.BBC
+#file ../../../z80/tests/ARRAYTST.BBC
+#file ../../../z80/tests/BYREFTST.BBC
+#file ../../../z80/tests/ERRORTST.BBC
+#file ../../../z80/tests/EXITTEST.BBC
+#file ../../../z80/tests/FILETEST.BBC
+#file ../../../z80/tests/FORTEST.BBC
+#file ../../../z80/tests/INT32TST.BBC
+#file ../../../z80/tests/SLICETST.BBC
+REM S1.4: programs tokenised and SAVEd by the Z80 version (R.T. Russell's
+REM tests) LOAD unchanged: LIST gives the same text, and SAVE writes the
+REM same bytes (the program part: the Z80 file is padded to 128 under CP/M)
+REM t19z80file.exp is the Z80 output under RunCPM with the bytes >= 128 of
+REM EXITTEST's lines 190, 450, 710, 820 put back from the file: RunCPM's
+REM console clears bit 7 (mask8bit in console.h)
+LOAD "EXITTEST"
+LIST
+LOAD "ALLTESTS"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "ALLTESTS.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "ALLTESTS ";L%;" bytes, ";D%;" differ"
+LOAD "ARRAYTST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "ARRAYTST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "ARRAYTST ";L%;" bytes, ";D%;" differ"
+LOAD "BYREFTST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "BYREFTST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "BYREFTST ";L%;" bytes, ";D%;" differ"
+LOAD "ERRORTST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "ERRORTST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "ERRORTST ";L%;" bytes, ";D%;" differ"
+LOAD "EXITTEST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "EXITTEST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "EXITTEST ";L%;" bytes, ";D%;" differ"
+LOAD "FILETEST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "FILETEST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "FILETEST ";L%;" bytes, ";D%;" differ"
+LOAD "FORTEST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "FORTEST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "FORTEST ";L%;" bytes, ";D%;" differ"
+LOAD "INT32TST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "INT32TST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "INT32TST ";L%;" bytes, ";D%;" differ"
+LOAD "SLICETST"
+SAVE "COPY.BBC"
+L%=TOP-PAGE:A%=OPENIN "SLICETST.BBC":B%=OPENIN "COPY.BBC":D%=0:FOR I%=1 TO L%:D%=D%-(BGET#A%<>BGET#B%):NEXT:CLOSE#A%:CLOSE#B%:PRINT "SLICETST ";L%;" bytes, ";D%;" differ"

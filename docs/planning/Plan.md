@@ -20,7 +20,7 @@ Spec IDs refer to `Spec.md`, test IDs to `Tests.md`.
 | P5 | **Agon emulator** for the tests | optional; building it needs permission | S1.1 |
 | P6 | **"BBC BASIC" name**: confirm with R.T. Russell whether the name may be used for this derived work | closed: confirmed by e-mail (user, 2026-11-03) | S8.2 |
 | P7 | **`../rosco_m68k` branch**: the hand-over says `release/version-2.42`, the checkout is on `planning/session-docs` (`release/version-2.42` exists only on origin; `maint/2.42` locally). Check which the build needs before rebuilding | open | S6.1 |
-| P8 | **Test gaps** from Tests.md: an S1.4 test (Z80-saved `.BBC` file); an S3.6 test (command-line start) | to do | S1.4, S3.6 |
+| P8 | **Test gaps** from Tests.md: an S1.4 test (Z80-saved `.BBC` file); an S3.6 test (command-line start) | done (2026-11-03): `t19z80file` for S1.4; S3.6 was already in `hostcheck.py` (autorun), missed by the crosscheck | S1.4, S3.6 |
 | P9 | **Sibling checkouts ahead of the CI pins** (minix-st-2.0.4, r68k): bump the pins or not | later | S6.1, S6.3 |
 | P10 | **Windows program untested in CI** | later | S3.3, S6.2 |
 
@@ -53,6 +53,7 @@ Checked against the source:
 
 ## Done
 
+* 2026-11-03: P8, the test `t19z80file` (S1.4).
 * 2026-11-03: planning files committed (d5280ec, pushed); Spec agreed:
   S1.6, S6.3, S7.1 confirmed.
 
@@ -61,5 +62,4 @@ Checked against the source:
 
 ## Next step
 
-P8: the tests for S1.4 (a Z80-saved `.BBC` file loads unchanged) and
-S3.6 (command-line start).
+Open for the user: P5, P7; later: P9, P10; on hold/parked: P3, P4.

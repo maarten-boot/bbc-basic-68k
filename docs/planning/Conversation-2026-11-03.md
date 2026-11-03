@@ -57,3 +57,21 @@ numbering restarts here.
 * Plan.md: P1 done (Spec changes accepted), P2 closed (left as it is),
   P6 closed (confirmed by e-mail; Spec S8.2 updated), P8 to do, P9 and
   P10 later; P3 on hold, P4 parked as before. Committed.
+
+## 7. P8: tests for S1.4 and S3.6
+
+* **User:** "pushed; yes, start on P8".
+* **S3.6** was already tested: `hostcheck.py` `autorun()` runs
+  `bbc68k hi`, `bbc68k sub/hi.BBC` and a missing name. The crosscheck
+  missed it; Tests.md T7 now traces S3.6. Spec S3.6 corrected: bare
+  BASIC has no command line, the PC program passes the name (H_ARG).
+* **S1.4:** the `u_*` tests already LOAD and run Russell's Z80-saved
+  programs. New `test/bas/t19z80file`: LIST of EXITTEST, and for all
+  nine `z80/tests/*.BBC` LOAD, SAVE, and a byte compare of the program
+  part: 0 bytes differ on the Z80 and the 68k.
+* **Found:** the LIST differed in four lines with bytes >= 128 in string
+  literals: RunCPM clears bit 7 on console output (`mask8bit = 0x7f`).
+  `t19z80file.exp` is the RunCPM output with those bytes put back from
+  the file itself (not from the 68k output); no `.ref`.
+* **Runs:** t19z80file ok on host, hostwin and bare. The full regression
+  was not rerun (only a test was added). Not committed.

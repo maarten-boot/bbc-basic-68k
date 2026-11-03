@@ -75,7 +75,8 @@ down from the code as built, were confirmed as requirements by the user.
 * **S3.6 Start a program from the command line:** a program name given
   at start-up is CHAINed (Minix: `bbcbasic PROG`; PC programs:
   `bbc68k PROG`, and a folder in the name, such as a file dropped on the
-  program, becomes BASIC's folder; bare: the built-in autorun name).
+  program, becomes BASIC's folder). Bare BASIC has no command line of
+  its own: the PC program passes the name to it (`bare.c`, H_ARG).
 
 ## S4. Files and `*` commands
 
