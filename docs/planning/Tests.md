@@ -5,6 +5,13 @@ Every test suite that exists, traced to `Spec.md`. Commands run from
 result, from the hand-over of 2026-11-03 (BBCZ80 log entries 114 and
 118), unless a date says otherwise.
 
+**Full regression 2026-11-04** (ab833a4; logs in `tmp/regress-2026-11-03/`,
+not kept in git): rebuild ok (bare image 60504 bytes); bascheck host 0 of
+235 (2 skipped), hostwin 0 of 235 (2 skipped), bare 0 of 237; asmcheck
+0 of 162; hostcheck, editcheck, ttycheck (exe and bare demo), fatcheck
+all ok; mkbaredemo --test ok. Not run: T5, T12-T14, T18 (Minix, web,
+MAME).
+
 ## Build (prerequisite for all)
 
     make bbcbasic
