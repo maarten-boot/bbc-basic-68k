@@ -9,7 +9,7 @@ Spec IDs refer to `Spec.md`, test IDs to `Tests.md`.
 
 | ID | Item | Status | Spec |
 |---|---|---|---|
-| P1 | **docs/planning**: Spec.md, Plan.md, Tests.md, conversation log; fold in the hand-over note | in progress (2026-11-03): drafts written, for review | all |
+| P1 | **docs/planning**: Spec.md, Plan.md, Tests.md, conversation log; fold in the hand-over note | Spec agreed (2026-11-03); crosscheck Spec/Plan/code next | all |
 | P2 | **BBCZ80:** a README line pointing here; keep or remove `src68k/` there | the user's choice | - |
 | P3 | **Minix items** | on hold until the user says so | S3.1 |
 | P3a | c_l5b_recovery fails only in the full Minix bascheck session | on hold | S1.6 |
@@ -24,10 +24,12 @@ Spec IDs refer to `Spec.md`, test IDs to `Tests.md`.
 
 ## Done
 
+* 2026-11-03: planning files committed (d5280ec, pushed); Spec agreed:
+  S1.6, S6.3, S7.1 confirmed.
+
 * 2026-11-01: import from BBCZ80 eaae913 (6628baf); full regression
   passes locally; CI run 41342193509 succeeds, image byte-identical.
 
 ## Next step
 
-Review the drafts of Spec.md (the *(as built)* items and S1.6), then
-commit this branch when the user says "commit".
+Crosscheck Spec.md, Plan.md and the code (P1), on the user's go.

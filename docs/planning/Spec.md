@@ -7,9 +7,8 @@ exists: the README, `mboot/PORT_PLAN.md` (decisions D1-D4),
 `src68k/demo`, `src68k/web`) and the test tools. Each item has an ID;
 `Tests.md` traces the tests to these IDs.
 
-Status: **draft, for review.** Items marked *(as built)* describe
-behaviour that exists but was never written down as a requirement; confirm
-or change them.
+Status: **agreed** (2026-11-03). S1.6, S6.3 and S7.1, first written
+down from the code as built, were confirmed as requirements by the user.
 
 ## S1. Language: BBC BASIC (Z80) 5.4
 
@@ -118,12 +117,12 @@ or change them.
   to `main` and by hand; it builds and tests the Linux and Windows
   programs and the bare image (`tools/ci-windows.sh`) and publishes them
   as three artifacts. Actions are pinned by commit hash.
-* **S6.3** *(as built)* The CI rosco image is byte-identical to a local
+* **S6.3** The CI rosco image is byte-identical to a local
   build of the same commit.
 
 ## S7. Performance
 
-* **S7.1** *(as built)* No requirement beyond "usable on the 10 MHz
+* **S7.1** No requirement beyond "usable on the 10 MHz
   board". Changes are measured with the benchmarks (`test/bench`):
   cycles with r68k (`bench.py`, `bareprof.py`), wall time only with MAME
   (`mamebare.sh`, `mamebench.py`), whose SD timing matches the board.

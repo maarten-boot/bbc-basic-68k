@@ -33,3 +33,9 @@ numbering restarts here.
   note and the four planning files on `planning/session-docs`. Spec
   questions (the *(as built)* items S6.3 and S7.1, and S1.6) still open
   for review.
+
+## 4. Spec confirmed
+
+* **User:** "pushed; confirm S6.3, S7.1 and S1.6; all yes". d5280ec
+  pushed. Spec.md: status agreed, the *(as built)* marks removed;
+  Plan.md: P1 now "crosscheck next", done entry added. Not committed.
