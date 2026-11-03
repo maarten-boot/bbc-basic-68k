@@ -43,7 +43,8 @@ down from the code as built, were confirmed as requirements by the user.
 ## S2. The 68000 inline assembler (D3)
 
 * **S2.1** `[ ... ]` assembles Motorola-syntax 68000 code (plus the
-  68010 instructions), with P%, O%, OPT, labels and two-pass assembly as
+  two 68010 additions RTD and `MOVE CCR,<ea>`; not MOVEC/MOVES), with
+  P%, O%, OPT, labels and two-pass assembly as
   in the Z80 version (`ASSEMBLER.md`).
 * **S2.2** For each supported instruction and addressing mode the bytes
   are the same as the ACK assembler's.
@@ -71,6 +72,11 @@ down from the code as built, were confirmed as requirements by the user.
   (`bbc68k-bare`, tarball and container image), each with the demo
   programs and `CHAIN "menu"`.
 
+* **S3.6 Start a program from the command line:** a program name given
+  at start-up is CHAINed (Minix: `bbcbasic PROG`; PC programs:
+  `bbc68k PROG`, and a folder in the name, such as a file dropped on the
+  program, becomes BASIC's folder; bare: the built-in autorun name).
+
 ## S4. Files and `*` commands
 
 * **S4.1 Program files:** LOAD, SAVE, CHAIN; `OPENIN`/`OPENOUT`/`OPENUP`,
@@ -88,8 +94,13 @@ down from the code as built, were confirmed as requirements by the user.
 * **S4.4 Modern-file-system behaviour** where CP/M differs
   (`Z80_DIFFERENCES.md` section 3): exact `EXT#`/`EOF#`, real `POS`,
   "File not found", "Bad name", spaces after `*` skipped.
-* **S4.5 `*` commands** as in the README and the target READMEs
-  (`*BYE`, `*ESC`, `*OPT`, `*DIR afsp`, `*ERA afsp`, `*TYPE`, ...).
+* **S4.5 `*` commands** (`osl.c`, table `comds`): `*BYE`/`*QUIT`,
+  `*CD`, `*DIR [afsp]` (also `*.`), `*ERA`/`*ERASE [afsp]`,
+  `*ESC [ON|OFF]`, `*EXEC`, `*HELP` (the version), `*LOAD`, `*SAVE`,
+  `*MKDIR`, `*OPT`, `*REN`/`*RENAME new=old`, `*RESET`, `*RMDIR`,
+  `*SPOOL`, `*TYPE`. Any of them may be abbreviated with `.`; spaces
+  after `*` are skipped. Anything else: under Minix it is run by the
+  shell; on bare and the PC programs it is "Bad command".
 
 ## S5. Console
 
@@ -111,8 +122,10 @@ down from the code as built, were confirmed as requirements by the user.
 ## S6. Build and release
 
 * **S6.1** Builds with a pinned ACK release
-  (`maarten-boot/ack`, `minix68k-20261031`, checked by SHA-256) and
-  sibling checkouts of `minix-st-2.0.4`, `r68k`, `RunCPM`, `rosco_m68k`.
+  (`maarten-boot/ack`, `minix68k-20261031`, checked by SHA-256,
+  `tools/getack.sh`) and sibling checkouts of `minix-st-2.0.4`, `r68k`,
+  `RunCPM`, `rosco_m68k`. CI pins them: minix-st-2.0.4 `feea47f`
+  (rosco-m68k), r68k `23f4e66` (main), RunCPM `12fc57a`.
 * **S6.2** CI (`.github/workflows/windows-exe.yml`) runs on every push
   to `main` and by hand; it builds and tests the Linux and Windows
   programs and the bare image (`tools/ci-windows.sh`) and publishes them
@@ -130,6 +143,6 @@ down from the code as built, were confirmed as requirements by the user.
 ## S8. Licence and attribution
 
 * **S8.1** Zlib licence, as BBCZ80 (`licence.txt`).
-* **S8.2** Open question: Russell's README says the BBC's permission to
-  use the name "BBC BASIC" is not transferable to a derived work. To be
-  confirmed with R.T. Russell (Plan.md P6).
+* **S8.2** The name "BBC BASIC": Russell's README says the BBC's
+  permission is not transferable to a derived work; its use here was
+  confirmed by e-mail (the user, 2026-11-03; Plan.md P6).

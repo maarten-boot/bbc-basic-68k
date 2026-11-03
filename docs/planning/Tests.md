@@ -16,13 +16,13 @@ result, from the hand-over of 2026-11-03 (BBCZ80 log entries 114 and
 
 | ID | Suite / command | What it checks | Spec | Last result |
 |---|---|---|---|---|
-| T1 | `bascheck.py` over `test/bas/*.in` (58 tests: `t*`, `k*`, `u_*`, `c_l*`, `x*`, `a*`) | Output against the Z80 under RunCPM (`.ref`), or a hand-written `.exp` | S1.1, S1.3-S1.6, S4.1 | see T1-T3 runs |
+| T1 | `bascheck.py` over `test/bas/*.in` (58 tests: `t*`, `k*`, `u_*`, `c_l*`, `x*`, `a*`) | Output against the Z80 under RunCPM (`.ref`), or a hand-written `.exp`. S1.6 in particular: `t17loadroom` (LOAD that does not fit), `k07errors` (PROCdeep: No room), `kw/HIMEM` | S1.1, S1.3-S1.6, S4.1 | see T1-T3 runs |
 | T2 | `bascheck.py` over `test/kw/*.in` (130, one per RISC OS keyword) | as T1 | S1.1, S4.5 | " |
 | T3 | `bascheck.py` over `test/guide/*.in` (48, the RISC OS programming chapters) | as T1 | S1.1, S1.6, S4.1 | " |
 | T1-3 runs | `BBC_EMU=host` / `hostwin` / `bare python3 tools/bascheck.py` | T1-T3 on each target | S3.2, S3.3 | host 0 of 234 (2 skipped), hostwin 0 of 234 (2 skipped), bare 0 of 236 |
 | T4 | `bascheck.py test/diff/dNN*.in` (by hand, not in the normal run) | Shows each deliberate difference as a diff against the Z80 | S1.2.x, S4.4 | differences as documented |
 | T5 | `mathcheck.py` (needs Minix in r68k) | FPP bit-identical to the Z80, random vectors per operation | S1.3 | not run since the move (Minix on hold) |
-| T6 | `BBC_EMU=host python3 tools/asmcheck.py` | Inline assembler bytes against ACK `as` | S2.1-S2.3 | 0 of 162 |
+| T6 | `BBC_EMU=host python3 tools/asmcheck.py` | Inline assembler bytes against ACK `as` (the 68010's RTD and `MOVE CCR,<ea>` against fixed hex) | S2.1-S2.3 | 0 of 162 |
 | T7 | `hostcheck.py` | PC programs: files of the starting folder, paths, `*` commands, piped scripts (CR, LF, CR LF), Windows console keys | S3.3, S4.3, S4.5, S5.4, S5.5 | ok |
 | T8 | `editcheck.py ../build/host/linux/bbc68k` | Line editor on a 40-column vt100 model | S5.3 | ok |
 | T9 | `ttycheck.py --exe ../build/host/linux/bbc68k` and `ttycheck.py ../build/bare/bbc68k-bare` | ESCape, typeahead, `*ESC OFF/ON`, ^S/^Q, editor, `*BYE` | S5.1-S5.3 | ok |
@@ -51,6 +51,10 @@ the prompt), so they report 0 of 234, 2 skipped; bare runs all 236.
   Z80-saved file and LISTs it.
 * **S1.5** is covered only indirectly (`x02bigarr`, `x06bigmem`,
   `d09bigarr`).
+* **S3.6** (start a program from the command line): no automatic test.
+* **The Windows program in CI:** CI builds `bbc68k.exe` but runs only
+  the Linux program's tests (no hostwin bascheck, `hostcheck.py linux`);
+  the Windows tests run only locally under Wine.
 * **S5.6** (`INKEY(-n)` FALSE) cannot be tested with typed input.
 * **S8.x**: not testable.
 
