@@ -40,3 +40,24 @@ Continues `Conversation-2026-11-04.md`.
 * **User:** "commit". Committed the workflow, ci-windows.sh, README and
   planning changes (P11). Next: merge to main, then a first tag
   (v0.1-beta suggested) for T20.
+
+## 14. The first release
+
+* **User:** "pushed and merged; tagged v0.1-beta, check the run". The
+  tag is v0.1.0-beta (matches v*, a pre-release).
+* Runs on b0fb1ac: main 42194490662 success (release skipped; the
+  Linux artifact is `bbc68k-linux.tar.gz` itself); tag 42194558206
+  success, build and release jobs.
+* Release "BBC BASIC 68k v0.1.0-beta", pre-release:
+  https://github.com/maarten-boot/bbc-basic-68k/releases/tag/v0.1.0-beta
+  Downloaded: SHA256SUMS ok for the three files; bbc68k keeps its
+  executable bit; the READMEs say "Version v0.1.0-beta (commit b0fb1ac,
+  GitHub Actions run 3)"; ROSCODE1.BIN is byte-identical to the local
+  build (60504 bytes); the Linux program prints "hello 42". T20 ok,
+  P11 done. Not committed.
+
+## 15. Commit
+
+* **User:** "commit". Committed the release check (T20, P11) and this
+  log on planning/session-docs (the working copy had been on main, at
+  the same commit; switched back with the edits).
