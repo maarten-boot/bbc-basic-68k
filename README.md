@@ -55,6 +55,11 @@ Standalone:
 - a linux build with the r68k emulator
 - a windows build with the r68k emulator
 
+Ready-made files for Windows, Linux and a real rosco-m68k are on the
+[releases](https://github.com/maarten-boot/bbc-basic-68k/releases) page:
+pushing a tag `v*` (e.g. `v0.1`; with a `-`, e.g. `v0.2-beta`, a
+pre-release) builds, tests and publishes them.
+
 
 ## Acknowledgements
 

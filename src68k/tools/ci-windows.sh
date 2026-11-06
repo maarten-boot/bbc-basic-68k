@@ -19,9 +19,9 @@
 # docker for the ROM (the
 # roscopeco/rosco_m68k image has m68k-elf-gcc and vasm).
 # Result, in W/bbc-basic-68k/build/dist: bbc68k-windows/ (bbc68k.exe, README.txt)
-# and its .zip; bbc68k-rosco/ (ROSCODE1.BIN = BBCBASIC.BIN, README.txt);
-# bbc68k-linux/ (bbc68k, static, and README.txt) and its
-# .tar.gz, which keeps the executable bit that an artifact's zip loses.
+# and its .zip; bbc68k-rosco/ (ROSCODE1.BIN = BBCBASIC.BIN, README.txt)
+# and its .zip; bbc68k-linux/ (bbc68k, static, and README.txt) and its
+# .tar.gz, which keeps the executable bit (a zip made by GitHub loses it).
 
 set -e
 SRC=$(cd "$(dirname "$0")/.." && pwd)
@@ -93,8 +93,9 @@ sed "s|@VERSION@|$VERSION|" "$SRC/bare/README-rosco.txt" > "$dist/bbc68k-rosco/R
 cp "$TOP/build/bare/ROSCODE1.BIN" "$dist/bbc68k-rosco/ROSCODE1.BIN"
 cp "$TOP/build/bare/ROSCODE1.BIN" "$dist/bbc68k-rosco/BBCBASIC.BIN"
 (cd "$dist" && zip -q -9 -r bbc68k-windows.zip bbc68k-windows &&
+	zip -q -9 -r bbc68k-rosco.zip bbc68k-rosco &&
 	tar czf bbc68k-linux.tar.gz bbc68k-linux)
 ls -l "$dist" "$dist/bbc68k-windows" "$dist/bbc68k-linux" "$dist/bbc68k-rosco"
 sha256sum "$dist/bbc68k-windows/bbc68k.exe" "$dist/bbc68k-windows.zip" \
 	"$dist/bbc68k-linux/bbc68k" "$dist/bbc68k-linux.tar.gz" \
-	"$dist/bbc68k-rosco/ROSCODE1.BIN"
+	"$dist/bbc68k-rosco/ROSCODE1.BIN" "$dist/bbc68k-rosco.zip"

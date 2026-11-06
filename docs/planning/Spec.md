@@ -128,9 +128,17 @@ down from the code as built, were confirmed as requirements by the user.
   `RunCPM`, `rosco_m68k`. CI pins them: minix-st-2.0.4 `feea47f`
   (rosco-m68k), r68k `23f4e66` (main), RunCPM `12fc57a`.
 * **S6.2** CI (`.github/workflows/windows-exe.yml`) runs on every push
-  to `main` and by hand; it builds and tests the Linux and Windows
+  to `main`, on a tag `v*`, and by hand; it builds and tests the Linux and Windows
   programs and the bare image (`tools/ci-windows.sh`) and publishes them
-  as three artifacts. Actions are pinned by commit hash.
+  as three artifacts: Windows and rosco as a zip each, Linux as its
+  `.tar.gz` itself (not zipped again, `archive: false`). Actions are
+  pinned by commit hash.
+* **S6.4 Releases.** Pushing a tag `v*` also runs the workflow, and if the
+  build and tests pass it publishes a GitHub release named after the
+  tag, with `bbc68k-TAG-windows.zip`, `bbc68k-TAG-linux.tar.gz`,
+  `bbc68k-TAG-rosco.zip` and `SHA256SUMS`, and the version line in the
+  READMEs is the tag. A tag with a `-` gives a pre-release. Only the
+  release job may write to the repository.
 * **S6.3** The CI rosco image is byte-identical to a local
   build of the same commit.
 
