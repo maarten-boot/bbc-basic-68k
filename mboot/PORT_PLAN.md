@@ -783,7 +783,8 @@ No Minix: `make bare` (`tools/mkbare.py`) builds `build/bare/ROSCODE1.BIN`,
 `build/host/linux/bbc68k`. Each is r68k with the firmware and bare BBC
 BASIC (with the demos) built in.
 * **Console:** `R68K_HOSTED` in `r68k-web.patch` (the web build's DUART
-  path, output to `r68k_host_output`). `host/hostmain.cpp`: an input
+  path, output to `r68k_host_output`); since 2026-11-07 this is in r68k
+  itself (`a3e0ce2`) and the patch is gone. `host/hostmain.cpp`: an input
   thread (console keys, Windows cursor keys as vt100, or pipe bytes); it
   sleeps while idle (STOP). Keys are held until BASIC is first idle.
   Ctrl-] quits; piped input ends the program when used up and quiet.

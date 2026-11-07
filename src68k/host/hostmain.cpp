@@ -7,7 +7,7 @@
 // The machine is set up as in "R68K_RAM=5M r68k -d ROSCODE1.BIN" (the 1 MB
 // board with the 4 MB expansion; r68k's main.cpp is compiled with its main
 // renamed, for its trap handlers).  The
-// DUART (r68k-web.patch, R68K_HOSTED) takes keys from r68k_key() and hands
+// DUART (r68k's Duart.cpp, R68K_HOSTED) takes keys from r68k_key() and hands
 // its output to r68k_host_output().
 // * Input: a thread reads the console (raw keys; on Windows arrow keys etc.
 //   become vt100 sequences, as BASIC's editor wants them) or, if standard

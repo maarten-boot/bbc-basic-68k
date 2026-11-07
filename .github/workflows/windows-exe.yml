@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           repository: maarten-boot/r68k
-          ref: 23f4e665855521d596780a8b921e9853d9cc4422  # main, with address errors (tested)
+          ref: f0e99c32aaca95312f21f9265fd52ff150b79df0  # main: embedding console, profiler, shift timing
           path: r68k
 
       # retry a failed download (an Ubuntu mirror can be slow or down)

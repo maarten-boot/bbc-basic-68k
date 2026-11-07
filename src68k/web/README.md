@@ -17,7 +17,7 @@ page, about 1.4 MB.
 | Part | What it is |
 |---|---|
 | r68k | the rosco_m68k emulator, compiled to WebAssembly by Emscripten (`emcc`), from r68k's tracked sources (`../r68k`) |
-| `r68k-web.patch` | `machine/Duart.cpp` for the page; native builds are unchanged (`#ifdef __EMSCRIPTEN__`). Channel A's output is collected for `Module.r68kOutput`, keys come in through `r68k_key()` |
+| r68k's `machine/Duart.cpp` | the console for the page, in r68k since `a3e0ce2` (it was `r68k-web.patch` here); native builds are unchanged (`#ifdef __EMSCRIPTEN__`). Channel A's output is collected for `Module.r68kOutput`, keys come in through `r68k_key()` |
 | `webmain.cpp` | `main()` for the page. It sets up the machine as `main.cpp` does (`main.cpp` is still compiled, with its `main` renamed, for its trap handlers), then runs the CPU in frames (`emscripten_set_main_loop`) instead of an endless loop |
 | `pre.js` | the SD card: `rosco_sd.bin` in memory, which r68k's firmware traps read and write, and `r68kSdWrite()`/`r68kSdRead()` for the page. For bare BASIC it is formatted FAT16 at the start (32 MB, one partition from sector 2048) |
 | `fat.js` | the card's FAT16 file system from the page's side: uploads go onto it, downloads come off it |

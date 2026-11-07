@@ -93,3 +93,32 @@ Continues `Conversation-2026-11-06.md`.
 ## 24. Pushed
 
 * **User:** "i pushed". 63f4ebb on origin. This entry is not committed.
+
+## 25. Commit
+
+* **User:** "commit". b838ad5. This entry is not committed.
+
+## 26. Pushed
+
+* **User:** "i pushed". b838ad5 on origin. This entry is not committed.
+
+## 27. r68k PR "no change"; CI pin moved to r68k main
+
+* **User:** a PR from r68k `rosco-minix-duart` to `main` shows no change;
+  "yes update the CI".
+* **No change** because `main` already has those commits: PR #4 (from
+  `planning`) merged them; `main` is `f0e99c3`, 6 ahead of
+  `rosco-minix-duart`, 0 behind (`gh api compare`). `main` differs from
+  `6e0177e` only in `docs/`.
+* **`r68k-web.patch` is in r68k** (`a3e0ce2`): 23f4e66's `Duart.cpp` with
+  the patch is identical to the new one.
+* **Done:** CI r68k pin `23f4e66` -> `f0e99c3`; `src68k/web/r68k-web.patch`
+  removed; `mkhost.py`/`mkweb.py` copy r68k without patching and stop
+  with a message if its `Duart.cpp` lacks `R68K_HOSTED`; host and web
+  READMEs, `hostmain.cpp` comment, PORT_PLAN.md section 21, Spec S6.1,
+  Plan P9 updated.
+* **Checked locally** (`../r68k` at 6e0177e, code = f0e99c3): mkhost
+  builds both programs; hostcheck linux and windows all ok; bascheck host
+  0 of 235 failed, 2 skipped. The web page is not built in CI, nor here
+  (no emcc).
+* Not committed; the CI run after the push is the test (T16).

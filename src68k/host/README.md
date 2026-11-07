@@ -41,8 +41,8 @@ in. There is no SD card and no image.
 
 ## How it is made
 
-* **r68k:** its tracked sources, with `web/r68k-web.patch` (Duart.cpp's
-  console path, `R68K_HOSTED`), plus:
+* **r68k:** its tracked sources, `a3e0ce2` or later (Duart.cpp's console
+  path, `R68K_HOSTED`; it was `web/r68k-web.patch` here), plus:
   * `hostmain.cpp`: `main()`. It writes the firmware out to a temporary
     file for `AddressDecoder`, puts BASIC at 0x40000, and has an input
     thread (console keys or pipe bytes) and a loop that sleeps while the
