@@ -1,0 +1,52 @@
+# Conversation log, 2026-11-07
+
+Continues `Conversation-2026-11-06.md`.
+
+## 17. Benchmarks against other 68000 BASICs; the cost of unaligned access
+
+* **User:** "read the handover and continue, skip the z80 ideas for now
+  the original question was regarding 68000 basic's". The hand-over is
+  `Handover-benchmark-2026-11-07.md` (untracked): R.T. Russell's question
+  how this BASIC compares with other 68000 BASICs, and whether the
+  unaligned (byte-wise) access costs much. Step 4 (Z80 timings) skipped.
+  This ends the pause of entry 16 for this work.
+* **EhBASIC 68k 3.52**: `ehbasic.bin` of rosco-m68k/example_programs
+  (firmware-2.x, fa4b2a9, sha256 4ccee8df...) downloaded into
+  `build/ehbasic/dl`. Its source is in `../rosco_m68k/code/software/
+  ehbasic`: 32-bit floats, `&` integer variables, `LEEK`.
+* **MAME:** `-bios v242` (the board's firmware; the image's default is
+  v250 DEV, which `mamebare.sh` uses). EhBASIC boots from the card
+  (5216784 bytes free) and the firmware tick at `$40C` runs under it.
+  EhBASIC polls the console and loses typed-ahead characters, so the
+  programs are typed a character at a time, each after its echo.
+* New `src68k/test/bench68/` (Rugg/Feldman BM1-BM8 and the sieve, one
+  template for both BASICs, 10000 passes; `@` = the variable type) and
+  `tools/bench68.py` (MAME, a boot per BASIC and type).
+* **Alignment:** rebuilt `build/r68kprof`; bareprof on the same programs;
+  `m68k-elf-objdump` (the roscopeco/rosco_m68k image) for the
+  disassembly; new `tools/leprof.py` counts the byte-wise LE helpers,
+  their calls and the inline 2-5 byte field accesses (13 sites, checked
+  by hand) and estimates aligned BE and LE costs.
+* **Found:** r68k charges 4 cycles per bit for an immediate shift, the
+  68000/68010 2 (Musashi source says 6+2n; measured 38 for lsl.w #8).
+  About 3 % of every r68k profile; leprof corrects it. With the
+  correction r68k and MAME agree within ~2 % (bm1 float: 28.6 M cycles
+  = 2.86 s, MAME 2.80 s).
+* **Result (alignment, corrected):** byte-wise LE access is 2.6-9.4 % of
+  the cycles; aligned big-endian data would save 2.0-7.8 %, aligned
+  little-endian 1.0-3.8 %.
+* **MAME results** (all 36 runs clean, 1899 primes in both; repeats
+  within 0.2 %): BBC BASIC 68k is 1.10-1.61x faster than EhBASIC with
+  real variables and 1.40-1.91x with integer variables (EhBASIC converts
+  `&` variables to float on use, `MOVE.l (a0),d0` then LAB_AYFC; its
+  data is aligned big-endian, and it is still slower).
+* **Report** for the user to pass on: `tmp/bench-68k-basics-2026-11-07.md`
+  (set-up, table, method and table of the byte-wise share, where the
+  time goes, how to reproduce). Plan P12 (done) and P13 (r68k shift
+  timing, the user's call); Tests T19 extended. Not committed.
+
+## 18. Commit
+
+* **User:** "commit". Committed the benchmark programs, bench68.py,
+  leprof.py, the hand-over note and the planning updates (with entry 16
+  of 2026-11-06). The report stays in tmp/ (not in git).

@@ -61,3 +61,9 @@ Continues `Conversation-2026-11-04.md`.
 * **User:** "commit". Committed the release check (T20, P11) and this
   log on planning/session-docs (the working copy had been on main, at
   the same commit; switched back with the edits).
+
+## 16. Pause for user feedback
+
+* **User:** "pushed; waiting on feedback from users now so we will
+  refrain from changes for the moment." e852e55 pushed. No changes
+  until feedback on v0.1.0-beta comes in. This entry is not committed.
