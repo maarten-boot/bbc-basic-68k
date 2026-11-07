@@ -24,7 +24,7 @@ Spec IDs refer to `Spec.md`, test IDs to `Tests.md`.
 | P9 | **Sibling checkouts ahead of the CI pins** (minix-st-2.0.4, r68k): bump the pins or not | later | S6.1, S6.3 |
 | P10 | **Windows program untested in CI** | later | S3.3, S6.2 |
 | P12 | **Benchmarks against other 68000 BASICs; cost of unaligned access** (Russell's question, `Handover-benchmark-2026-11-07.md`) | done 2026-11-07: report `tmp/bench-68k-basics-2026-11-07.md`, not committed; Z80 timings skipped (user) | S7.1 |
-| P13 | **r68k shift timing**: 4 cycles per bit for an immediate shift, the 68000/68010 2; ~3 % on every r68k profile (`leprof.py` corrects it) | found 2026-11-07; a fix is in the user's r68k fork: the user's call | S7.1 |
+| P13 | **r68k shift timing**: 4 cycles per bit for an immediate shift, the 68000/68010 2; ~3 % on every r68k profile (`leprof.py` corrects it) | done 2026-11-07: fixed in r68k `6e0177e` (branch rosco-minix-duart), the profiler is in r68k too (`7b95236`); the two r68k patches dropped, `leprof.py` no longer corrects; checked: BM1 and sieve give the report's figures unchanged | S7.1 |
 | P11 | **Releases and artifacts**: the Linux artifact without the extra zip; a tag `v*` publishes a release (workflow, ci-windows.sh, README) | done 2026-11-06: v0.1.0-beta released (pre-release), T20 ok | S6.2, S6.4 |
 
 ## Crosscheck 2026-11-03 (Spec, Plan, code)
@@ -65,4 +65,4 @@ Checked against the source:
 
 ## Next step
 
-Open for the user: P5, P7; later: P9, P10; on hold/parked: P3, P4.
+Open for the user: P5, P7; later: P9 (now also: r68k 6e0177e is ahead of the CI pin), P10; on hold/parked: P3, P4.

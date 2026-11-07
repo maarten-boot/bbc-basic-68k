@@ -8,9 +8,8 @@ to the byte at &FFFFF0 before its timed part and 2 after it; after them
 come three of its own: console output, and a file written and read back
 in the RAM store and on the SD card.  All run in one boot of the bare
 image (tools/mkbare.py, in build/prof/bare) under the profiling r68k,
-build/r68kprof (see bench.py; make it from r68k with
-mboot/patches/r68k-0002-cycle-profiler.patch, and copy r68k's
-firmware/rosco_m68k.rom into it), R68K_RAM=5M, with a FAT16 card made by
+build/r68kprof (see bench.py: r68k 6e0177e or later, with r68k's
+firmware/rosco_m68k.rom copied into it), R68K_RAM=5M, with a FAT16 card made by
 the Minix tree's mkfat.py.  The cycles are split by the objects of the
 link: the interpreter (the .s files), C (osl.c, bare.c, fat.c) and the
 ACK library; for each benchmark the TOP routines follow (from 0.5%).  With -l LABEL the report is also saved as build/prof/LABEL.txt.

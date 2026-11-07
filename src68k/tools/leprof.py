@@ -25,10 +25,9 @@ float is a move.l and a move.b), executed as often; aligned little-endian
 adds rol.w #8 / swap / rol.w #8 (48) per long and rol.w #8 (22) per word.
 The report gives per benchmark: the share of all cycles in byte-wise
 access, and the share that aligned big-endian and aligned little-endian
-data would save.  r68k charges 4 cycles per bit for a shift or rotate by
-an immediate count, the 68000/68010 2 (6+2n, 8+2n for a long): those
-instructions' cycles, and the totals, are corrected to the 68000's
-before anything is counted.  An upper-bound estimate: inline byte reads that are not
+data would save.  The profile must come from r68k 6e0177e or later:
+before it, a shift by an immediate count cost 4 cycles per bit, not 2
+(about 3 % too many cycles).  An upper-bound estimate: inline byte reads that are not
 in such runs (e.g. a single byte, or LOCATE's name compare) are not
 counted, and neither are the register moves the helpers' interface needs.
 """
@@ -82,25 +81,6 @@ def profile(path):
             pc, c, n = l.split()
             cur['pc'][int(pc, 16)] = (int(c), int(n))
     return runs
-
-
-SHIFT = re.compile(r'(as|ls|ro|rox)[lr]([bwl])$')
-
-
-def correct(runs, ins):
-    """Shifts by an immediate count at 68000 cost (see above)."""
-    op = {a: (mn, o) for a, mn, o in ins}
-    for r in runs:
-        for a, (c, n) in list(r['pc'].items()):
-            if a not in op:
-                continue
-            mn, o = op[a]
-            m = SHIFT.match(mn)
-            if m and o.startswith('#') and n:
-                k = int(o[1:].split(',')[0])
-                good = ((8 if m.group(2) == 'l' else 6) + 2 * k) * n
-                r['cycles'] -= c - good
-                r['pc'][a] = (good, n)
 
 
 MEMB = re.compile(r'%(a[0-7]|sp)@(?:\((-?\d+)\))?(?![+-])')   # (An) or d(An), not (An)+ / -(An)
@@ -162,7 +142,6 @@ def main():
     runs = profile(sys.argv[1])
     ins = disasm(sys.argv[2])
     names = sys.argv[3:]
-    correct(runs, ins)
     syms = symbols()
     addrs = [v for v, _ in syms]
     where = dict((n, v) for v, n in syms)

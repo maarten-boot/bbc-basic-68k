@@ -200,8 +200,9 @@ little-endian; D3 = stub first, 68000 assembler in a later phase.
 * `src68k/Makefile` (`make`, `make check`), `bbc.h`, and `util.s` (`LDLE4`,
   `STLE4`, `LDLE2`, `STLE2`), with `test/utiltest.s` passing at odd
   addresses on r68k.
-* **r68k bug found and fixed locally** (`/home/mboot/vibe/r68k`,
-  `main.cpp`, not committed):
+* **r68k bug found and fixed** (`main.cpp`; at first a local patch,
+  `mboot/patches/r68k-0001-illegal-instruction-trap.patch`, now r68k
+  commit `2d92829`, so the patch is gone):
   * the illegal-instruction callback returned "handled" for every illegal
     opcode, not just the firmware-trap magic, so illegal instructions were
     skipped silently;
@@ -415,10 +416,12 @@ other 2 stop where expected:
 ## 13. Speed pass, step 1: benchmarks (2026-10-20)
 
 **Tools:**
-* **Profiling emulator:** `build/r68kprof` is r68k with
-  `mboot/patches/r68k-0002-cycle-profiler.patch`, built out of tree; your
-  r68k is unchanged. It counts the 68000 cycles (Musashi's figures for
-  the 68010) per instruction address. A BASIC program writes `?&FFFFF0=1`
+* **Profiling emulator:** `build/r68kprof` is a copy of r68k, built out
+  of tree. The cycle profiler was a patch here at first
+  (`mboot/patches/r68k-0002-cycle-profiler.patch`); since 2026-11-07 it
+  is in r68k itself (`7b95236`, on when `R68K_PROF` is set), and the
+  patch is gone. It counts the 68000 cycles (Musashi's figures for the
+  68010) per instruction address. A BASIC program writes `?&FFFFF0=1`
   to start the measurement and `=2` to stop it.
 * **`tools/bench.py`** runs `src68k/test/bench/*.bas` in one boot. It maps
   the addresses to routines using the symbols of the unconverted link
@@ -615,6 +618,9 @@ git worktree); bbcbasic = now. Both give the same results.
 * MAME's cycle-accurate 68000/68010 core runs 3-7% faster than the
   r68k/Musashi cycle counts predict. So the profiler's figures are a
   little pessimistic but consistent, and fine for comparisons.
+  * Update 2026-11-07: about 3 points of that gap were an r68k bug. A
+    shift by an immediate count cost 4 cycles per bit, not 2; fixed in
+    r68k `6e0177e`. Since then r68k and MAME agree to about 2 %.
 * The speed pass gains 20-35% in real time.
 * With the root on the SD card, Minix reports 732 KB available, against
   285 KB with the 1 MB RAM-disk root of the r68k runs.

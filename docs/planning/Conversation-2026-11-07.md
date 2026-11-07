@@ -64,3 +64,24 @@ Continues `Conversation-2026-11-06.md`.
   shift distance") and once in each of the 24 `M68KMAKE_OP(..., s, .)`
   handlers (`USE_CYCLES(shift<<CYC_SHIFT)`). Register-count shifts are
   right. Profile: 6+4n (word/byte), 8+4n (long). No change made.
+
+## 21. Commit
+
+* **User:** "commit". fa881d2 (log entries 19-20). This entry is not committed.
+
+## 22. r68k updated: patches dropped, leprof correction removed
+
+* **User:** relayed the r68k thread's notes: drop the two r68k patch
+  files; remove the shift correction in `leprof.py`; update the outdated
+  notes in PORT_PLAN.md.
+* r68k `rosco-minix-duart` now has the profiler (`7b95236`) and the shift
+  fix (`6e0177e`); the illegal-instruction fix was already `2d92829`.
+* Done: `git rm` of `mboot/patches/r68k-0001-*` and `r68k-0002-*`;
+  `leprof.py` without `correct()`; `bench.py`/`bareprof.py` docstrings
+  build `build/r68kprof` from r68k 6e0177e+ without a patch; PORT_PLAN.md
+  sections 2 (illegal-instruction fix), 13 (profiler) and the MAME/r68k
+  gap note updated. Plan P13 done.
+* Check: rebuilt `build/r68kprof` from `../r68k`; bareprof + leprof on
+  BM1 and sieve (float): 28.6 M cycles, 8.7/6.8/3.4 % and 9.2/7.2/3.3 %,
+  the same as the report's corrected figures.
+* Not committed.
