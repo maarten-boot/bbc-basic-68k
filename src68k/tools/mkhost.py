@@ -5,8 +5,8 @@
 	mkhost.py [-r R68K_DIR] [--windows] [--linux]
 
 One static executable each (src68k/host/README.md): r68k (its tracked
-sources, R68K_DIR, default ../r68k next to this repository) with
-web/r68k-web.patch (Duart.cpp: the console, R68K_HOSTED),
+sources, R68K_DIR, default ../r68k next to this repository; a3e0ce2 or
+later, for Duart.cpp's console path, R68K_HOSTED),
 host/hostmain.cpp in place of main() (main.cpp compiled with main and
 illegal_instruction_handler renamed) and host/hostfs.cpp (the host's
 files for BASIC), and built in: the firmware (R68K_DIR/firmware) and bare
@@ -40,7 +40,7 @@ CXXSRC = ['machine/AddressDecoder.cpp', 'machine/Duart.cpp', 'machine/Memory.cpp
 
 
 def sources(r68k):
-    """r68k's tracked sources with the patch, and m68kops.c generated."""
+    """r68k's tracked sources, and m68kops.c generated."""
     src = os.path.join(WORK, 'r68k-src')
     if os.path.exists(src):
         shutil.rmtree(src)
@@ -48,8 +48,10 @@ def sources(r68k):
                             capture_output=True, text=True).stdout.split():
         os.makedirs(os.path.dirname(os.path.join(src, f)), exist_ok=True)
         shutil.copy(os.path.join(r68k, f), os.path.join(src, f))
-    subprocess.run(['patch', '-s', '-p1', '-i', os.path.join(SRC, 'web', 'r68k-web.patch')],
-                   cwd=src, check=True)
+    with open(os.path.join(src, 'machine', 'Duart.cpp')) as f:
+        if 'R68K_HOSTED' not in f.read():
+            sys.exit('%s: r68k too old; its console path for embedding is in r68k a3e0ce2'
+                     ' (main f0e99c3) and later' % os.path.basename(sys.argv[0]))
     subprocess.run(['make', '-C', 'musashi', 'm68kops.c'], cwd=src, check=True,
                    stdout=subprocess.DEVNULL)
     return src

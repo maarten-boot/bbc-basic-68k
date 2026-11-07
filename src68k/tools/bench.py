@@ -6,13 +6,14 @@
 Each BENCH (default test/bench/*.bas) is a BASIC program that writes 1
 to the byte at &FFFFF0 before its timed part and 2 after it.  All of
 them run in one boot of Minix under the profiling r68k: build/r68kprof,
-a copy of r68k with mboot/patches/r68k-0002-cycle-profiler.patch applied
-(it counts the cycles per instruction address), R68K_RAM=2M.  To make it:
+a copy of r68k 6e0177e or later (branch rosco-minix-duart: the cycle
+profiler, on when R68K_PROF names the output file, counts the cycles per
+instruction address; immediate shifts charged as on the 68000),
+R68K_RAM=2M.  To make it:
 	mkdir -p build/r68kprof && (cd ../r68k && git ls-files | tar cf - -T -)
 	    | tar xf - -C build/r68kprof && cd build/r68kprof &&
-	    patch -p1 < ../../mboot/patches/r68k-0002-cycle-profiler.patch &&
 	    cp ../../../r68k/firmware/rosco_m68k.rom firmware && make r68k
-(the patch is for r68k 24958aa).  tools/bareprof.py does the same for
+tools/bareprof.py does the same for
 the bare image.  The addresses are mapped to
 bbcbasic's routines with the symbols of an unconverted link (ack.out,
 anm); bbcbasic's load address is ^@% minus STAVAR.  The report gives per

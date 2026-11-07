@@ -126,7 +126,7 @@ down from the code as built, were confirmed as requirements by the user.
   (`maarten-boot/ack`, `minix68k-20261031`, checked by SHA-256,
   `tools/getack.sh`) and sibling checkouts of `minix-st-2.0.4`, `r68k`,
   `RunCPM`, `rosco_m68k`. CI pins them: minix-st-2.0.4 `feea47f`
-  (rosco-m68k), r68k `23f4e66` (main), RunCPM `12fc57a`.
+  (rosco-m68k), r68k `f0e99c3` (main), RunCPM `12fc57a`.
 * **S6.2** CI (`.github/workflows/windows-exe.yml`) runs on every push
   to `main`, on a tag `v*`, and by hand; it builds and tests the Linux and Windows
   programs and the bare image (`tools/ci-windows.sh`) and publishes them

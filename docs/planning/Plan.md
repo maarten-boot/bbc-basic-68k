@@ -21,8 +21,10 @@ Spec IDs refer to `Spec.md`, test IDs to `Tests.md`.
 | P6 | **"BBC BASIC" name**: confirm with R.T. Russell whether the name may be used for this derived work | closed: confirmed by e-mail (user, 2026-11-03) | S8.2 |
 | P7 | **`../rosco_m68k` branch**: the hand-over says `release/version-2.42`, the checkout is on `planning/session-docs` (`release/version-2.42` exists only on origin; `maint/2.42` locally). Check which the build needs before rebuilding | open | S6.1 |
 | P8 | **Test gaps** from Tests.md: an S1.4 test (Z80-saved `.BBC` file); an S3.6 test (command-line start) | done (2026-11-03): `t19z80file` for S1.4; S3.6 was already in `hostcheck.py` (autorun), missed by the crosscheck | S1.4, S3.6 |
-| P9 | **Sibling checkouts ahead of the CI pins** (minix-st-2.0.4, r68k): bump the pins or not | later | S6.1, S6.3 |
+| P9 | **Sibling checkouts ahead of the CI pins** (minix-st-2.0.4, r68k): bump the pins or not | r68k: pin moved to main `f0e99c3` (2026-11-07; `r68k-web.patch` dropped, now in r68k `a3e0ce2`), CI run to confirm; minix-st-2.0.4 (`feea47f`): later | S6.1, S6.3 |
 | P10 | **Windows program untested in CI** | later | S3.3, S6.2 |
+| P12 | **Benchmarks against other 68000 BASICs; cost of unaligned access** (Russell's question, `Handover-benchmark-2026-11-07.md`) | done 2026-11-07: report `tmp/bench-68k-basics-2026-11-07.md`, not committed; Z80 timings skipped (user) | S7.1 |
+| P13 | **r68k shift timing**: 4 cycles per bit for an immediate shift, the 68000/68010 2; ~3 % on every r68k profile (`leprof.py` corrects it) | done 2026-11-07: fixed in r68k `6e0177e` (branch rosco-minix-duart), the profiler is in r68k too (`7b95236`); the two r68k patches dropped, `leprof.py` no longer corrects; checked: BM1 and sieve give the report's figures unchanged | S7.1 |
 | P11 | **Releases and artifacts**: the Linux artifact without the extra zip; a tag `v*` publishes a release (workflow, ci-windows.sh, README) | done 2026-11-06: v0.1.0-beta released (pre-release), T20 ok | S6.2, S6.4 |
 
 ## Crosscheck 2026-11-03 (Spec, Plan, code)
@@ -63,4 +65,4 @@ Checked against the source:
 
 ## Next step
 
-Open for the user: P5, P7; later: P9, P10; on hold/parked: P3, P4.
+Open for the user: P5, P7; P9 r68k: check the CI run; later: P9 minix pin, P10; on hold/parked: P3, P4.

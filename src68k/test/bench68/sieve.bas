@@ -1,0 +1,14 @@
+10 S@=8190
+20 DIM F@(8191)
+30 @T0@
+40 C@=0
+50 FOR I@=0 TO S@:F@(I@)=1:NEXT I@
+60 FOR I@=0 TO S@
+70 IF F@(I@)=0 THEN 120
+80 P@=I@+I@+3:K@=I@+P@
+90 IF K@>S@ THEN 110
+100 FOR J@=K@ TO S@ STEP P@:F@(J@)=0:NEXT J@
+110 C@=C@+1
+120 NEXT I@
+130 @T1@
+140 PRINT C@;" primes"
