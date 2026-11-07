@@ -50,3 +50,17 @@ Continues `Conversation-2026-11-06.md`.
 * **User:** "commit". Committed the benchmark programs, bench68.py,
   leprof.py, the hand-over note and the planning updates (with entry 16
   of 2026-11-06). The report stays in tmp/ (not in git).
+
+## 19. Pushed
+
+* **User:** "pushed". e531bb1 on origin. This entry is not committed.
+
+## 20. P13 for the r68k thread
+
+* **User:** "show me P13 as i will have to tell that thread what to look at".
+* Located the cause in r68k (Musashi): immediate-count shifts are charged
+  2 cycles per bit twice, once in `m68ki_build_opcode_table`
+  (`musashi/m68k_in.c` line 218, "For all shift operations with known
+  shift distance") and once in each of the 24 `M68KMAKE_OP(..., s, .)`
+  handlers (`USE_CYCLES(shift<<CYC_SHIFT)`). Register-count shifts are
+  right. Profile: 6+4n (word/byte), 8+4n (long). No change made.
