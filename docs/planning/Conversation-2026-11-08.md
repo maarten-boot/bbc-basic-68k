@@ -68,3 +68,7 @@ Continues `Conversation-2026-11-07.md`; numbering continues.
 ## 43. Commit
 
 * **User:** "commit". Entries 42-43 committed.
+
+## 44. Report sent
+
+* **User:** "report has been sent" (`tmp/bench-68k-basics-2026-11-07.md`, with the BBCSDL addendum, to R.T. Russell). Not committed.
