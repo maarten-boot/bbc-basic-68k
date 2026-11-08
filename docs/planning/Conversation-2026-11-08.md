@@ -36,3 +36,19 @@ Continues `Conversation-2026-11-07.md`; numbering continues.
 ## 37. Commit
 
 * **User:** "commit". Entries 34-37 and Plan P14 committed.
+
+## 38. Pushed
+
+* **User:** "i pushed". b0dc9d1 on origin. Not committed.
+
+## 39. BBCSDL 68k ready for testing
+
+* **User:** the new BASIC is at `../BBCSDL/build/rosco/ROSCODE1.BIN`.
+* BBCSDL (branch mboot-68k-dev, d928fa7): "BBC BASIC for rosco-m68k Console v0.51"; gcc 13.3.1 -O2, -mcpu=68010, 64-bit double in software, byte-wise LE heap (BBC_LEMEM), TIME from the firmware tick.
+* `bench68.py`: third dialect `sdl` (not in the default set). BM1 int in MAME: 421 cs per 10000 passes (BBC 68k 260). Full run started. Not committed.
+
+* Full run done: BBCSDL float/int (cs, 10000 passes): bm1 538/421, bm2 2850/2550, bm3 8570/8628, bm4 8134/8604, bm5 8647/9117, bm6 12763/12558, bm7 21704/20426, bm8 29469, sieve 8435/7485 (one pass; 1899 primes). 2-4x slower than BBC 68k, BM8 6.5x. Addendum written to the report (tmp/, untracked); bench68 README, Plan P14, Tests T19 updated. Not committed.
+
+## 40. Commit; profile BBCSDL under r68k
+
+* **User:** "commit; then profile BBCSDL under r68k". Committed entries 38-40 with the bench68 change.

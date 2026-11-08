@@ -43,7 +43,7 @@ MAME).
 | T16 | Compare the CI rosco image with a local build of the same commit (`cmp`) | Reproducible image | S6.3 | identical (60504 bytes, 6628baf) |
 | T17 | Real board, by hand: boot `ROSCODE1.BIN` from the menu and from the card; run IOTIME, FILETEST, Russell's test programs; memcheck | The real machine | S3.2, S4.2 | pass (BBCZ80 log 108-119) |
 | T18 | `make mamecheck` (MAME rosco-emulator, podman) | T1-T3, T6, T5 on the emulated real machine | S3.1, S1.3, S2 | not run since the move |
-| T19 | `bench.py`, `bareprof.py`, `mamebare.sh`, `mamebench.py` over `test/bench/*.bas`; `bench68.py` (BBC BASIC against EhBASIC 68k in MAME, `test/bench68`) and `leprof.py` (byte-wise access share) | Measurement only, no pass/fail | S7.1 | profile: ~6000 cycles per FOR pass; 2026-11-07: BBC 1.1-1.6x (float) / 1.4-1.9x (integer) faster than EhBASIC; byte-wise LE access 3-9 % of cycles (report `tmp/bench-68k-basics-2026-11-07.md`) |
+| T19 | `bench.py`, `bareprof.py`, `mamebare.sh`, `mamebench.py` over `test/bench/*.bas`; `bench68.py` (BBC BASIC against EhBASIC 68k in MAME, `test/bench68`) and `leprof.py` (byte-wise access share) | Measurement only, no pass/fail | S7.1 | profile: ~6000 cycles per FOR pass; 2026-11-07: BBC 1.1-1.6x (float) / 1.4-1.9x (integer) faster than EhBASIC; byte-wise LE access 3-9 % of cycles (report `tmp/bench-68k-basics-2026-11-07.md`); 2026-11-08: BBCSDL 68k (`-b sdl`) 2-4x slower than BBC BASIC 68k |
 
 ## Counts
 

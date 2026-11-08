@@ -5,7 +5,9 @@
 
 BASIC is bbc (bare BBC BASIC 68k, build/bare/ROSCODE1.BIN, make bare) or
 eh (EhBASIC 68k 3.52 for rosco_m68k firmware 2.x, build/ehbasic/dl/
-ehbasic.bin, from github.com/rosco-m68k/example_programs); default both.
+ehbasic.bin, from github.com/rosco-m68k/example_programs) or sdl (BBCSDL
+translated to the 68k, ../BBCSDL/build/rosco/ROSCODE1.BIN); default bbc
+and eh.
 -i IMAGE replaces the image of the (single) BASIC given with -b.  KIND is
 float or int (the variable type, see test/bench68/README.md); default
 both.  Each BASIC and kind is one boot of the rosco-emulator
@@ -44,6 +46,9 @@ BASICS = {
     'eh': dict(image=os.path.join(TOP, 'build', 'ehbasic', 'dl', 'ehbasic.bin'),
                prompt='Ready', boot='Ready',
                t0='TT=LEEK($40C)', t1='PRINT "BENCH {name} ";LEEK($40C)-TT', int='&'),
+    'sdl': dict(image=os.path.join(os.path.dirname(TOP), 'BBCSDL', 'build', 'rosco', 'ROSCODE1.BIN'),
+                prompt='>', boot='>',
+                t0='TT=TIME', t1='PRINT "BENCH {name} ";TIME-TT', int='%'),
 }
 
 
