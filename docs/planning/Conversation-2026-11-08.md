@@ -52,3 +52,11 @@ Continues `Conversation-2026-11-07.md`; numbering continues.
 ## 40. Commit; profile BBCSDL under r68k
 
 * **User:** "commit; then profile BBCSDL under r68k". Committed entries 38-40 with the bench68 change.
+
+* Commit 749f036. Profiling: new `src68k/tools/sdlprof.py` (bench68 programs, ?&FFFFF0 start/stop, r68k without -d under stdbuf -o0, ELF symbols + link map groups interp/os/float/intop/libm/libc). build/r68kprof rebuilt at r68k 4c6c84a. BM1 int 42.8 M cycles = 4.28 s vs MAME 4.21 s. LE access not separable (inlined macros). Full run started. Not committed.
+
+* Profile done (build/prof/sdl-bench68.txt): interpreter 100 % of BM1/BM2/sieve, 57-87 % of BM3-BM7; soft-float 20-42 % in BM3-BM6, 69 % in BM8 (__muldf3 inner loop 43 %); OS layer ~0. Without floats BBCSDL needs 2-3x the cycles of BBC 68k. LE access not separable (loadn/storen 23-28 % of BM1 is the upper bound). Report section added; Plan P14, Tests T19 updated. Not committed.
+
+## 41. Commit
+
+* **User:** "commit". sdlprof.py and the planning updates committed with entries 40-41.

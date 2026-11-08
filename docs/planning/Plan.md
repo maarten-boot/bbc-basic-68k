@@ -25,7 +25,7 @@ Spec IDs refer to `Spec.md`, test IDs to `Tests.md`.
 | P10 | **Windows program untested in CI** | later | S3.3, S6.2 |
 | P12 | **Benchmarks against other 68000 BASICs; cost of unaligned access** (Russell's question, `Handover-benchmark-2026-11-07.md`) | done 2026-11-07: report `tmp/bench-68k-basics-2026-11-07.md`, not committed; Z80 timings skipped (user) | S7.1 |
 | P13 | **r68k shift timing**: 4 cycles per bit for an immediate shift, the 68000/68010 2; ~3 % on every r68k profile (`leprof.py` corrects it) | done 2026-11-07: fixed in r68k `6e0177e` (branch rosco-minix-duart), the profiler is in r68k too (`7b95236`); the two r68k patches dropped, `leprof.py` no longer corrects; checked: BM1 and sieve give the report's figures unchanged | S7.1 |
-| P14 | **BBCSDL translated to 68k** as a further BASIC for the comparisons (`bench68.py`: a third dialect) | measured 2026-11-08 (MAME, `bench68.py -b sdl`): 2-4x slower than BBC BASIC 68k, BM8 6.5x; added to the report `tmp/bench-68k-basics-2026-11-07.md`; its r68k profile not done | S7.1 |
+| P14 | **BBCSDL translated to 68k** as a further BASIC for the comparisons (`bench68.py`: a third dialect) | measured 2026-11-08 (MAME, `bench68.py -b sdl`): 2-4x slower than BBC BASIC 68k, BM8 6.5x; added to the report `tmp/bench-68k-basics-2026-11-07.md`; r68k profile (`sdlprof.py`): the C interpreter is the main cost (2-3x BBC 68k's cycles without floats), soft-float 20-40 % in BM3-BM6 and 69 % in BM8; in the report | S7.1 |
 | P11 | **Releases and artifacts**: the Linux artifact without the extra zip; a tag `v*` publishes a release (workflow, ci-windows.sh, README) | done 2026-11-06: v0.1.0-beta released (pre-release), T20 ok | S6.2, S6.4 |
 
 ## Crosscheck 2026-11-03 (Spec, Plan, code)
@@ -66,4 +66,4 @@ Checked against the source:
 
 ## Next step
 
-Open for the user: P5, P7; P14 profile optional; later: P10; on hold/parked: P3, P4.
+Open for the user: P5, P7; later: P10; on hold/parked: P3, P4.
