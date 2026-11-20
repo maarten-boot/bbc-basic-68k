@@ -11,3 +11,8 @@ Continues `Conversation-2026-11-10.md`; numbering continues.
 
 * **User:** "commit the logs; what 5 commits are that".
 * Committed `Conversation-2026-11-10.md` and `Conversation-2026-11-20.md`. Listed the 5 code/CI commits on this branch that are not on `main`.
+
+## 48. Push and open a PR to main
+
+* **User:** "push and open a PR to main".
+* Push failed: SSH has no key in this session (`Permission denied (publickey)`); HTTPS via the `gh` token got 403 (token has no write access). Git config left unchanged. Asked the user to push (`! git push origin planning/session-docs`); the PR follows after the push.
