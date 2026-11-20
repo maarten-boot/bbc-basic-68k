@@ -122,3 +122,15 @@ Continues `Conversation-2026-11-06.md`.
   0 of 235 failed, 2 skipped. The web page is not built in CI, nor here
   (no emcc).
 * Not committed; the CI run after the push is the test (T16).
+
+## 28. Commit
+
+* **User:** "commit". b771d29. This entry is not committed.
+
+## 29. Pushed and merged; CI run checked
+
+* **User:** "pushed and merged, check the run".
+* Run 42421504546 on main `d40d00f` (merge of b771d29, r68k pin f0e99c3): success (build ok, release skipped: no tag). bascheck host 0/235 (2 skipped), asmcheck 0/162, hostcheck/editcheck/ttycheck all ok, bascheck bare 0/237, fatcheck ok.
+* T16: rosco ROSCODE1.BIN sha256 9af8f510... identical to the local build (60504 bytes).
+* Linux artifact (`.tar.gz`, downloaded via the API: `gh run download` cannot unpack an unarchived upload) runs: `hello 42`.
+* P9 r68k part done. Not committed.

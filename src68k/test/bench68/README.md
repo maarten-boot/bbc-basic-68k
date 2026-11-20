@@ -1,6 +1,7 @@
 # Benchmarks for 68000 BASICs: Rugg/Feldman BM1-BM8 and the BYTE sieve
 
-The same programs for BBC BASIC 68k and EhBASIC 68k (`tools/bench68.py`).
+The same programs for BBC BASIC 68k, EhBASIC 68k and BBCSDL for the 68k
+(`tools/bench68.py`; BBCSDL is BBC BASIC too: the same lines as `bbc`).
 Only the timing lines differ:
 
 * `@T0@` starts the clock, `@T1@` prints `BENCH name ticks`:
